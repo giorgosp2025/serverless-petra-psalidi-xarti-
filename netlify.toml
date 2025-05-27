@@ -1,0 +1,4 @@
+#Βοηθάει το Netlify να γνωρίζει πού βρίσκονται οι serverless functions σου.
+
+[build]
+  functions = "netlify/functions"
