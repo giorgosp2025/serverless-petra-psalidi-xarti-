@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="el">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Πέτρα-Ψαλίδι-Χαρτί</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Πέτρα-Ψαλίδι-Χαρτί</h1>
+    <header>
+        <div class="score_box">
+            <h1>Πέτρα-Ψαλίδι-Χαρτί</h1>
+
+            <h1>
+                <span>You: <span class="score_style" id="user_score">0</span> </span>
+                <span>Draws: <span class="score_style" id="draws_score">0</span> </span>
+                <span>CPU: <span class="score_style" id="cpu_score">0</span> </span>
+            </h1>
+        </div>
+    </header>
+
     <div>
         <button onclick="makeChoice('πέτρα')">Πέτρα</button>
         <button onclick="makeChoice('ψαλίδι')">Ψαλίδι</button>
@@ -17,6 +30,9 @@
     <div id="result"></div>
 
     <script>
+        let userScr = 0;
+        let drawScr = 0;
+        let cpuScr = 0;
         function makeChoice(userChoice) {
             fetch('/.netlify/functions/game', {
                 method: 'POST',
@@ -25,12 +41,27 @@
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('computer-choice').innerText = `Ο υπολογιστής επέλεξε: ${data.computerChoice}`;
-                document.getElementById('result').innerText = data.result;
-            });
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('computer-choice').innerText = `Ο υπολογιστής επέλεξε: ${data.computerChoice}`;
+                    document.getElementById('result').innerText = data.result;
+
+                    if (data.result === "Κέρδισες!") {
+                        userScore++;
+                    }
+                    else if (data.result == "Ισοπαλία!") {
+                        drawScr++;
+                    }
+                    else {
+                        cpuScr++;
+                    }
+
+                    document.getElementById('user_score').innerText = userScr;
+                    document.getElementById('draws_score').innerText = drawScr;
+                    document.getElementById('cpu_score').innerText = cpuScr;
+                });
         }
     </script>
 </body>
+
 </html>

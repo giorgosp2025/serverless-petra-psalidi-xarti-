@@ -1,3 +1,4 @@
+//severless function sto Netflify
 exports.handler = async (event) => {
     const choices = ['πέτρα', 'ψαλίδι', 'χαρτί'];
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
