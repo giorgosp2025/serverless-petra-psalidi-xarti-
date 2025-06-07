@@ -14,18 +14,19 @@
             <h1>Πέτρα-Ψαλίδι-Χαρτί</h1>
 
             <h1>
-                <span>You: <span class="score_style" id="user_score">0</span> </span>
-                <span>Draws: <span class="score_style" id="draws_score">0</span> </span>
-                <span>CPU: <span class="score_style" id="cpu_score">0</span> </span>
+                <span class="score_space">You: <span class="score_style" id="user_score">0</span> </span>
+                <span class="score_space">Draws: <span class="score_style" id="draws_score">0</span> </span>
+                <span class="score_space">CPU: <span class="score_style" id="cpu_score">0</span> </span>
             </h1>
         </div>
     </header>
 
-    <div>
+    <div id="choices">
         <button onclick="makeChoice('πέτρα')">Πέτρα</button>
         <button onclick="makeChoice('ψαλίδι')">Ψαλίδι</button>
         <button onclick="makeChoice('χαρτί')">Χαρτί</button>
     </div>
+
     <div id="computer-choice"></div>
     <div id="result"></div>
 
@@ -33,7 +34,11 @@
         let userScr = 0;
         let drawScr = 0;
         let cpuScr = 0;
+
         function makeChoice(userChoice) {
+
+            document.getElementById("choices").style.display = "none"; // Απόκρυψη όταν έχει πατηθεί μία επιλογή
+
             fetch('/.netlify/functions/game', {
                 method: 'POST',
                 body: JSON.stringify({ userChoice: userChoice }),
@@ -49,7 +54,7 @@
                     if (data.result === "Κέρδισες!") {
                         userScr++;
                     }
-                    else if (data.result == "Ισοπαλία!") {
+                    else if (data.result === "Ισοπαλία!") {
                         drawScr++;
                     }
                     else {
@@ -59,8 +64,17 @@
                     document.getElementById('user_score').innerText = userScr;
                     document.getElementById('draws_score').innerText = drawScr;
                     document.getElementById('cpu_score').innerText = cpuScr;
+
+                    document.getElementById("play-again").style.display = "block"; // Εμφάνιση κουμπιού
                 });
         }
+
+        function resetGame() {
+        document.getElementById("choices").style.display = "block"; // Επανεμφάνιση επιλογών μετά την επιλογή παίξε ξανά
+        document.getElementById("computer-choice").innerText = "";
+        document.getElementById("result").innerText = "";
+        document.getElementById("play-again").style.display = "none"; // Απόκρυψη κουμπιού μετά την επιλογή παίξε ξανά
+    }
     </script>
 </body>
 

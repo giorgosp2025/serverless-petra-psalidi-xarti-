@@ -14,6 +14,10 @@ body {
     text-align: center;
 }
 
+.score_space{
+    margin: 15px;
+}
+
 button {
     font-size: 1.5em;
     padding: 10px 20px;
@@ -38,3 +42,19 @@ button:hover {
     margin-top: 10px;
     font-style: italic;
 }
+
+
+#play-again {
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#play-again:hover {
+    background-color: #45a049;
+}
+
