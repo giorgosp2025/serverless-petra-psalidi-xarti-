@@ -27,8 +27,26 @@
         <button onclick="makeChoice('χαρτί')">Χαρτί</button>
     </div>
 
-    <div id="computer-choice"></div>
-    <div id="result"></div>
+    <div id="result-display" style="display: none;">
+        <div class="result-box">
+            <div class="side-box" id="user-side">
+                <h2>Εσύ</h2>
+                <div id="user_choiceText"></div>
+            </div>
+
+            <div class="center-box">
+                <div id="result"></div>
+            </div>
+
+            <div class="side-box" id="cpu-side">
+                <h2>CPU</h2>
+                <div id="cpu_choiceText"></div>
+            </div>
+        </div>
+    </div>
+
+    <button id="play-again" style="display: none;" onclick="resetGame()">Παίξε Ξανά</button>
+
 
     <script>
         let userScr = 0;
@@ -48,9 +66,12 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('computer-choice').innerText = `Ο υπολογιστής επέλεξε: ${data.computerChoice}`;
+
+                    document.getElementById('user_choiceText').innerText = `Επέλεξες: ${userChoice}`;
+                    document.getElementById('cpu_choiceText').innerText = `Επέλεξε: ${data.computerChoice}`;
                     document.getElementById('result').innerText = data.result;
 
+                    //Ενημέωση των σκορ
                     if (data.result === "Κέρδισες!") {
                         userScr++;
                     }
@@ -61,20 +82,32 @@
                         cpuScr++;
                     }
 
+                    // Ενημέρωση του scoreboard στο header
                     document.getElementById('user_score').innerText = userScr;
                     document.getElementById('draws_score').innerText = drawScr;
                     document.getElementById('cpu_score').innerText = cpuScr;
-
-                    document.getElementById("play-again").style.display = "block"; // Εμφάνιση κουμπιού
+                    
+                    //κουμπί παίξε ξανά
+                    document.getElementById("result-display").style.display = "block";
+                    document.getElementById("play-again").style.display = "block";
                 });
         }
 
         function resetGame() {
-        document.getElementById("choices").style.display = "block"; // Επανεμφάνιση επιλογών μετά την επιλογή παίξε ξανά
-        document.getElementById("computer-choice").innerText = "";
-        document.getElementById("result").innerText = "";
-        document.getElementById("play-again").style.display = "none"; // Απόκρυψη κουμπιού μετά την επιλογή παίξε ξανά
-    }
+            // Επανεμφάνιση των επιλογών
+            document.getElementById("choices").style.display = "block";
+
+            // Απόκρυψη του αποτελέσματος και των επιλογών που εμφανίστηκαν μετά το γύρο
+            document.getElementById("result-display").style.display = "none";
+
+            // Απόκρυψη του κουμπιού "Παίξε Ξανά"
+            document.getElementById("play-again").style.display = "none";
+
+            // Καθαρισμός κειμένων
+            document.getElementById("user_choiceText").innerText = "";
+            document.getElementById("cpu_choiceText").innerText = "";
+            document.getElementById("result").innerText = "";
+        }
     </script>
 </body>
 

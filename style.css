@@ -43,18 +43,29 @@ button:hover {
     font-style: italic;
 }
 
+.result-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 700px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+}
 
-#play-again {
+.side-box {
+    width: 30%;
+    text-align: center;
     font-size: 1.2em;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border-radius: 12px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
 }
-#play-again:hover {
-    background-color: #45a049;
+
+.center-box {
+    width: 40%;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
 }
+
 
