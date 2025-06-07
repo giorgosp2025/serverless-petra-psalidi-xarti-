@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #d3d3d3; /* πρόσθεσε το γκρι φόντο εδώ */
+    background-color: #d3d3d3; 
 }
 
 .score_box {
@@ -23,13 +23,13 @@ button {
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
-    border-radius: 12px; /* πρόσθεσε το για στρογγυλεμένες άκρες */
+    border-radius: 12px; 
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
-    background-color: #555; /* hover background */
-    color: white; /* hover text color */
+    background-color: #555; 
+    color: white; 
 }
 
 #result {
