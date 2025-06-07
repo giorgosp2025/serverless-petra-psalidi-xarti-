@@ -32,6 +32,7 @@
             <div class="side-box" id="user-side">
                 <h2>Εσύ</h2>
                 <div id="user_choiceText"></div>
+                <div>Σκορ: <span id="user_score_result"></span></div>
             </div>
 
             <div class="center-box">
@@ -41,6 +42,7 @@
             <div class="side-box" id="cpu-side">
                 <h2>CPU</h2>
                 <div id="cpu_choiceText"></div>
+                <div>Σκορ: <span id="cpu_score_result"></span></div>
             </div>
         </div>
     </div>
@@ -86,8 +88,11 @@
                     document.getElementById('user_score').innerText = userScr;
                     document.getElementById('draws_score').innerText = drawScr;
                     document.getElementById('cpu_score').innerText = cpuScr;
+
+                    // Ενημέρωση του scoreboard κάτω στην οθόνη
+                    document.getElementById('user_score_result').innerText = userScr;
+                    document.getElementById('cpu_score_result').innerText = cpuScr;
                     
-                    //κουμπί παίξε ξανά
                     document.getElementById("result-display").style.display = "block";
                     document.getElementById("play-again").style.display = "block";
                 });
