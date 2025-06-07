@@ -4,7 +4,7 @@ let cpuScr = 0;
 
 function makeChoice(userChoice) {
 
-    document.getElementById("choices").style.display = "none"; // Απόκρυψη όταν έχει πατηθεί μία επιλογή
+    document.getElementById("choices").style.display = "none"; // απόκρυψη όταν έχει πατηθεί μία επιλογή
 
     fetch('/.netlify/functions/game', {
         method: 'POST',
@@ -20,7 +20,7 @@ function makeChoice(userChoice) {
             document.getElementById('cpu_choiceText').innerText = `Επέλεξε: ${data.computerChoice}`;
             document.getElementById('result').innerText = data.result;
 
-            //Ενημέωση των σκορ
+            //ενημέωση των σκορ
             if (data.result === "Κέρδισες!") {
                 userScr++;
             }
@@ -31,7 +31,7 @@ function makeChoice(userChoice) {
                 cpuScr++;
             }
 
-            // Ενημέρωση του scoreboard στο header
+            // ενημέρωση του scoreboard στο header
             document.getElementById('user_score').innerText = userScr;
             document.getElementById('draws_score').innerText = drawScr;
             document.getElementById('cpu_score').innerText = cpuScr;
@@ -43,7 +43,7 @@ function makeChoice(userChoice) {
 }
 
 function resetGame() {
-    // Επανεμφάνιση των επιλογών
+    // επανεμφάνιση των επιλογών
     document.getElementById("choices").style.display = "block";
 
     // Απόκρυψη του αποτελέσματος και των επιλογών που εμφανίστηκαν μετά το γύρο
@@ -52,7 +52,7 @@ function resetGame() {
     // Απόκρυψη του κουμπιού "Παίξε Ξανά"
     document.getElementById("play-again").style.display = "none";
 
-    // Καθαρισμός κειμένων
+    // καθαρισμός κειμένων
     document.getElementById("user_choiceText").innerText = "";
     document.getElementById("cpu_choiceText").innerText = "";
     document.getElementById("result").innerText = "";
